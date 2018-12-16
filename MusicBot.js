@@ -64,7 +64,9 @@ client.on('message', async msg => { // eslint-disable-line
 					msg.channel.send(`
 __**Song selection:**__
 
-${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
+//${videos.map(video2 => `**${++index} -** **${video2.title}**`).join('\n')}
+
+.setDescription{`${videos.map(video2 => `**${++index} -** **${video2.title}**`).join('\n')}
 
 Please provide a value to select one of the search results ranging from 1-10.
 					`);
@@ -99,10 +101,10 @@ Please provide a value to select one of the search results ranging from 1-10.
 		serverQueue.songs = [];
 		serverQueue.connection.dispatcher.end('Stop command has been used!');
 		return undefined;
-	} else if (command === `repeat.`) {
+	} else if (command === `repeat`) {
 		if (!serverQueue) return msg.channel.send('لا يوجد شيء حالي ف العمل.');
 		const embedNP = new Discord.RichEmbed()
-	       .setDescription(`سيتم اعاده تشغيل الفديو :**${serverQueue.songs[0].title}**`)
+	       .setDescription(`The video will be played back :**${serverQueue.songs[0].title}**`)
 		.setColor('#36393e') 
 	        msg.channel.send({embed: embedNP})
   	        return handleVideo(video, msg, msg.member.voiceChannel);
