@@ -26,7 +26,7 @@ client.on('ready',  () => {
   console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
 });
 
-const Discord = require('discord.js');
+
 
 const Util = require('discord.js');
 
