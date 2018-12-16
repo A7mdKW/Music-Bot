@@ -249,7 +249,7 @@ if (message.content.startsWith(PREFIX + 'ss')) {
     message.channel.sendMessage(`**Streaming: **${argresult}`)
 } 
 if (message.content.startsWith(PREFIX + 'sp')) {
-  KiNg66S.user.setGame(argresult);
+  client.user.setGame(argresult);
      console.log('test' + argresult);
     message.channel.sendMessage(`Playing: **${argresult}`)
 } 
