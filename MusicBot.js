@@ -48,7 +48,7 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
-const prefix = "=";
+const prefix = "-";
 /////////////////////////
 ////////////////////////
 
@@ -103,7 +103,7 @@ client.on('message', async msg =>{
 });
 
 client.on('message', message => {
-    if(message.content === '=stop'){
+    if(message.content === '-stop'){
         message.reply('**Stopped :white_check_mark: **');
     }
 });
