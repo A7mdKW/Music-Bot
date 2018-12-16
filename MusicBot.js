@@ -103,6 +103,7 @@ Please provide a value to select one of the search results ranging from 1-10.
 		if (!serverQueue) return msg.channel.send('لا يوجد شيء حالي ف العمل.');
 		const embedNP = new Discord.RichEmbed()
 	       .setDescription(`سيتم اعاده تشغيل الفديو :**${serverQueue.songs[0].title}**`)
+		.setColor('#36393e') 
 	        msg.channel.send({embed: embedNP})
   	        return handleVideo(video, msg, msg.member.voiceChannel);
 	} else if (command === 'volume') {
