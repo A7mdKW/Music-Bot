@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 client.on('ready', () => {
-  client.user.setGame(`on 15 servers | $help | $invite .`,'https://www.twitch.tv/v5bz');
+  client.user.setGame(`Deluxe .`,'https://www.twitch.tv/v5bz');
   console.log('---------------');
   console.log(' Bot Is Online')
   console.log('---------------')
@@ -26,7 +26,7 @@ client.on('ready',  () => {
   console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
 });
 
-
+const Discord = require('discord.js');
 
 const Util = require('discord.js');
 
@@ -46,6 +46,9 @@ const fs = require('fs');
 
 const gif = require("gif-search");
 
+const client = new Discord.Client({disableEveryone: true});
+
+const prefix = "=";
 /////////////////////////
 ////////////////////////
 
@@ -98,6 +101,53 @@ client.on('message', async msg =>{
         }
     };
 });
+
+client.on('message', message => {
+    if(message.content === '=stop'){
+        message.reply('**Stopped :white_check_mark: **');
+    }
+});
+
+client.on('message', message => {
+    if(message.content === '69'){
+        message.reply('**He is a big nigga!! **');
+    }
+});
+client.on('message', message =>{
+
+   
+if(!true) return;
+    if(message.content.split(' ')[0] == (prefix+'clear')){
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('⚠ | **ليس لديك صلاحيات**');
+    var lmt = message.content.split(' ')[1]
+    ,  hang = 0
+    ,  max  = 0;
+    
+    if(!lmt) lmt = 100;
+    if(typeof lmt !== 'number') return;
+    if(lmt > 50){
+        for(;lmt > 50;){
+        lmt--;
+        hang++;
+        }
+        }
+     message.channel.fetchMessages({limite:lmt}).then(msgs=>{
+     msgs.channel.bulkDelete(msgs);
+     });
+     if(hang > 50){
+         hang = 50;
+     }
+        message.channel.fetchMessages({limite:hang}).then(msgs=>{
+        message.channel.bulkDelete(msgs);
+     });
+     
+  max= hang+lmt;
+    message.channel.send(`تم مسح الرسائل بنجاح `).then(m => m.delete(5000));
+       
+    }
+});
+
+
 /////////////////////////
 ////////////////////////
 //////////////////////
@@ -124,7 +174,7 @@ client.on('message', async msg => {
 	let command = msg.content.toLowerCase().split(" ")[0];
 	command = command.slice(prefix.length)
 
-	if (command === `play`) {
+	if (command === `p`) {
 		const voiceChannel = msg.member.voiceChannel;
         
         if (!voiceChannel) return msg.channel.send("I can't find you in any voice channel!");
@@ -204,7 +254,7 @@ client.on('message', async msg => {
             
         }
         
-	} else if (command === `skip`) {
+	} else if (command === `s`) {
 
 		if (!msg.member.voiceChannel) return msg.channel.send("You Must be in a Voice channel to Run the Music commands!");
         if (!serverQueue) return msg.channel.send("There is no Queue to skip!!");
@@ -338,10 +388,10 @@ function play(guild, song) {
 
 
 client.on('message', message => {
-    if (message.content === 'help') {
+    if (message.content === '=help') {
         let helpEmbed = new Discord.RichEmbed()
         .setTitle('**أوامر الميوزك...**')
-        .setDescription('**برفكس البوت ($)**')
+        .setDescription('**برفكس البوت (!)**')
         .addField('play', 'لتشغيل اغنية')
         .addField('join', 'دخول رومك الصوتي')
         .addField('disconnect', 'الخروج من رومك الصوتي')
@@ -355,8 +405,33 @@ client.on('message', message => {
     }
 });
 
+const adminprefix = "+";
+const devs = ['351472610732670976','261607590193004545'];
 client.on('message', message => {
-    if (message.content === 'general_commands') {
+  var argresult = message.content.split(` `).slice(1).join(' ');
+    if (!devs.includes(message.author.id)) return;
+    
+if (message.content.startsWith(adminprefix + 'setgame')) {
+  client.user.setGame(argresult);
+    message.channel.sendMessage(`**${argresult} تم تغيير بلاينق البوت إلى **`)
+} else 
+  if (message.content.startsWith(adminprefix + 'setname')) {
+client.user.setUsername(argresult).then
+    message.channel.sendMessage(`**${argresult}** : تم تغيير أسم البوت إلى`)
+return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");
+} else
+  if (message.content.startsWith(adminprefix + 'setavatar')) {
+client.user.setAvatar(argresult);
+  message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
+      } else     
+if (message.content.startsWith(adminprefix + 'setstream')) {
+  client.user.setGame(argresult, "https://www.twitch.tv/idk");
+    message.channel.sendMessage(`**تم تغيير تويتش البوت إلى  ${argresult}**`)
+}
+});
+
+client.on('message', message => {
+    if (message.content === '=general_commands') {
         let helpEmbed = new Discord.RichEmbed()
         .setTitle('**أوامر عامة...**')
         .addField('avatar', "افاتار الشخص المطلوب")
@@ -366,5 +441,6 @@ client.on('message', message => {
       message.channel.send(helpEmbed);
     }
 });
+
 
 
