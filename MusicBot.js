@@ -200,7 +200,7 @@ client.login(process.env.BOT_TOKEN);
 			return msg.channel.send("I don't have enough permissions to speak in your voice channel!");
 		}
 
-		if (!permissions.has('EMBED_LINKS')) {
+		
 
 			return msg.channel.sendMessage("I don't have enough permissions to insert a URLs!")
 		}
