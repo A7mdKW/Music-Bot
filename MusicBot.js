@@ -198,3 +198,9 @@ function play(guild, song) {
 
 	serverQueue.textChannel.send(`🎶 Start playing: **${song.title}**`);
 }
+
+client.on('message', message => {
+    if(message.content === '-stop'){
+        message.send('** ``!تم استخدام الأمر تخطي`` :white_check_mark: **');
+    }
+});
